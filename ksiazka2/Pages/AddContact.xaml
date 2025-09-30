@@ -1,0 +1,34 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ksiazka2.Pages.AddContact"
+             Title="Dodaj Kontakt"
+             Padding="20">
+
+    <VerticalStackLayout Spacing="15">
+
+        <!-- Imię -->
+        <Entry x:Name="NameEntry" Placeholder="Imię" MaxLength="30" />
+
+        <!-- Nazwisko -->
+        <Entry x:Name="LastNameEntry" Placeholder="Nazwisko" MaxLength="30" />
+
+        <!-- Numer telefonu -->
+        <Entry x:Name="PhoneEntry" Placeholder="Numer telefonu" Keyboard="Telephone" MaxLength="15" />
+
+        <!-- Przyciski akcji -->
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Anuluj"
+                    Clicked="OnCancelClicked"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    HorizontalOptions="StartAndExpand" />
+
+            <Button Text="Dodaj"
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#27AE60"
+                    TextColor="White"
+                    HorizontalOptions="EndAndExpand" />
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>

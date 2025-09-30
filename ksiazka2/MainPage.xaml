@@ -1,0 +1,113 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ksiazka2.MainPage"
+             Title="Książka Kontaktów"
+             Padding="10">
+
+    <VerticalStackLayout Spacing="10">
+
+        <!-- Nagłówek -->
+        <Label Text="Kontakty" 
+               FontSize="24"
+               HorizontalOptions="Center" />
+        <SearchBar TextChanged="SearchBar_TextChanged" x:Name="searchbar" Placeholder="Wyszukaj kontakt"></SearchBar>
+        <!-- Lista kontaktów -->
+        <Label x:Name="infoText"
+       Text=""
+       HorizontalOptions="Center"
+       VerticalOptions="Center"
+       FontSize="16"/>
+        <CollectionView x:Name="contactsListView"
+                        SelectionMode="None"
+                        HeightRequest="400">
+           
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5" ColumnDefinitions="*, Auto, Auto" RowDefinitions="Auto">
+
+                       
+                        <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="2">
+                           
+                            <Label x:Name="nameLabel"
+                                   Text="{Binding Name}"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+
+                            <Label x:Name="lastNameLabel"
+                                   Text="{Binding LastName}"
+                                   FontSize="16"/>
+
+                            <Label x:Name="phoneNumLabel"
+                                   Text="{Binding PhoneNumber}"
+                                   FontSize="14"
+                                   TextColor="Gray"/>
+
+                        </StackLayout>
+
+                 
+                        <Button x:Name="editButton"
+                                Grid.Column="1"
+                                Text="Edytuj"
+                                VerticalOptions="Center"
+                                Margin="5,0"
+                                Clicked="OnEditClicked"
+                                CommandParameter="{Binding .}"
+                                WidthRequest="70"/>
+
+                        
+                        <Button x:Name="deleteButton"
+                                Grid.Column="2"
+                                Text="Usuń"
+                                BackgroundColor="#E74C3C"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                Margin="5,0"
+                                Clicked="OnDeleteClicked"
+                                CommandParameter="{Binding .}"
+                                WidthRequest="70"/>
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Edytuj" CommandParameter="{Binding .}" Clicked="OnEditClicked"/>
+                                <MenuFlyoutItem Text="Usun" CommandParameter="{Binding .}" Clicked="OnDeleteClicked" />
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+
+                    </Grid>
+                    
+                </DataTemplate>
+                
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+       
+        <Grid ColumnDefinitions="Auto,*,Auto" Padding="0,5">
+            <Button Text="◀"
+            Clicked="PagLeftClicked"
+            HorizontalOptions="Start"
+            WidthRequest="50"
+            Grid.Column="0" />
+
+            <Label x:Name="PagLabel"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           FontSize="16"
+           Text="1"
+           Grid.Column="1" />
+
+            <Button Text="▶"
+            Clicked="PagRightClicked"
+            HorizontalOptions="End"
+            WidthRequest="50"
+            Grid.Column="2" />
+        </Grid>
+        
+        <Button Text="Dodaj Kontakt"
+                BackgroundColor="#27AE60"
+                TextColor="White"
+                FontAttributes="Bold"
+                HeightRequest="50"
+                Clicked="OnAddContactClicked" />
+
+    </VerticalStackLayout>
+
+</ContentPage>
